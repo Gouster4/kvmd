@@ -32,8 +32,9 @@
 #define _KBD_DATA_PIN	11 // CLK == 12
 #define _MOUSE_DATA_PIN	14 // CLK == 15
 
-#define _KBD_IN_DATA_PIN 26 // passthru, CLK == 27
-#define _MOUSE_IN_DATA_PIN 16 // passthru, CLK == 17
+#define _LS_IN_POWER_PIN	5
+#define _KBD_IN_DATA_PIN 3 // passthru, CLK == 4
+#define _MOUSE_IN_DATA_PIN 6 // passthru, CLK == 7
 
 u8 ph_g_ps2_kbd_leds = 0;
 bool ph_g_ps2_kbd_online = 0;
@@ -51,6 +52,9 @@ void ph_ps2_init(void) {
 		gpio_init(_LS_POWER_PIN);
 		gpio_set_dir(_LS_POWER_PIN, GPIO_OUT);
 		gpio_put(_LS_POWER_PIN, true);
+	    gpio_init(_LS_IN_POWER_PIN);
+		gpio_set_dir(_LS_IN_POWER_PIN, GPIO_OUT);
+		gpio_put(_LS_IN_POWER_PIN, true);
 	}
 
 #	define INIT_STUB(x_pin) { \
