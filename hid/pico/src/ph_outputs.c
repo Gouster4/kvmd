@@ -31,13 +31,13 @@
 #include "ph_proto.h"
 
 
-#define _PS2_ENABLED_PIN		2
-#define	_PS2_SET_KBD_PIN		3
-#define _PS2_SET_MOUSE_PIN		4
+//#define _PS2_ENABLED_PIN		2
+//#define	_PS2_SET_KBD_PIN		3
+//#define _PS2_SET_MOUSE_PIN		4
 
-#define _BRIDGE_MODE_PIN		5
+//#define _BRIDGE_MODE_PIN		5
 
-#define _USB_DISABLED_PIN		6
+//#define _USB_DISABLED_PIN		6
 #define _USB_ENABLE_W98_PIN		7
 #define _USB_SET_MOUSE_REL_PIN	8
 #define _USB_SET_MOUSE_W98_PIN	9
@@ -53,26 +53,26 @@ static int _read_outputs(void);
 
 void ph_outputs_init(void) {
 #	define INIT_SWITCH(x_pin) { gpio_init(x_pin); gpio_set_dir(x_pin, GPIO_IN); gpio_pull_up(x_pin); }
-	INIT_SWITCH(_PS2_ENABLED_PIN);
-	INIT_SWITCH(_PS2_SET_KBD_PIN);
-	INIT_SWITCH(_PS2_SET_MOUSE_PIN);
+	//INIT_SWITCH(_PS2_ENABLED_PIN);
+	//INIT_SWITCH(_PS2_SET_KBD_PIN);
+	//INIT_SWITCH(_PS2_SET_MOUSE_PIN);
 
-	INIT_SWITCH(_BRIDGE_MODE_PIN);
+	//INIT_SWITCH(_BRIDGE_MODE_PIN);
 
-	INIT_SWITCH(_USB_DISABLED_PIN);
+	//INIT_SWITCH(_USB_DISABLED_PIN);
 	INIT_SWITCH(_USB_ENABLE_W98_PIN);
 	INIT_SWITCH(_USB_SET_MOUSE_REL_PIN);
 	INIT_SWITCH(_USB_SET_MOUSE_W98_PIN);
 #	undef INIT_SWITCH
 	sleep_ms(10); // Нужен небольшой слип для активации pull-up
 
-	const bool o_ps2_enabled = !gpio_get(_PS2_ENABLED_PIN); // Note: all pins are pulled up!
-	const bool o_ps2_kbd = !gpio_get(_PS2_SET_KBD_PIN);
-	const bool o_ps2_mouse = !gpio_get(_PS2_SET_MOUSE_PIN);
+	const bool o_ps2_enabled = true; //!gpio_get(_PS2_ENABLED_PIN); // Note: all pins are pulled up!
+	const bool o_ps2_kbd = true; //!gpio_get(_PS2_SET_KBD_PIN);
+	const bool o_ps2_mouse = true; //!gpio_get(_PS2_SET_MOUSE_PIN);
 
-	ph_g_is_bridge = !gpio_get(_BRIDGE_MODE_PIN);
+	ph_g_is_bridge = true; //!gpio_get(_BRIDGE_MODE_PIN);
 
-	const bool o_usb_disabled = (ph_g_is_bridge || !gpio_get(_USB_DISABLED_PIN));
+	const bool o_usb_disabled = (ph_g_is_bridge) //|| !gpio_get(_USB_DISABLED_PIN));
 	const bool o_usb_enabled_w98 = !gpio_get(_USB_ENABLE_W98_PIN);
 	const bool o_usb_mouse_rel = !gpio_get(_USB_SET_MOUSE_REL_PIN);
 	const bool o_usb_mouse_w98 = !gpio_get(_USB_SET_MOUSE_W98_PIN);
