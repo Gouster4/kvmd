@@ -72,7 +72,7 @@ void ph_outputs_init(void) {
 
 	ph_g_is_bridge = true; //!gpio_get(_BRIDGE_MODE_PIN);
 
-	const bool o_usb_disabled = (ph_g_is_bridge) //|| !gpio_get(_USB_DISABLED_PIN));
+	const bool o_usb_disabled = (ph_g_is_bridge); //|| !gpio_get(_USB_DISABLED_PIN));
 	const bool o_usb_enabled_w98 = !gpio_get(_USB_ENABLE_W98_PIN);
 	const bool o_usb_mouse_rel = !gpio_get(_USB_SET_MOUSE_REL_PIN);
 	const bool o_usb_mouse_w98 = !gpio_get(_USB_SET_MOUSE_W98_PIN);
